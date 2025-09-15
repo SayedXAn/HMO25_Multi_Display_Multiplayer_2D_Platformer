@@ -19,7 +19,7 @@ namespace Platformer.Mechanics
         public AudioClip respawnAudio;
         public AudioClip ouchAudio;
         public uint id;
-        public GameObject myCam;
+        //public GameObject myCam;
 
         /// <summary>
         /// Max horizontal speed of the player.
@@ -48,6 +48,8 @@ namespace Platformer.Mechanics
 
         public Bounds Bounds => collider2d.bounds;
 
+        private PlayerInput playerInput;
+
         void Awake()
         {
             id = gameObject.GetComponent<PlayerInput>().user.id;
@@ -57,12 +59,13 @@ namespace Platformer.Mechanics
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
 
-            m_MoveAction = InputSystem.actions.FindAction("Player/Move");
-            m_JumpAction = InputSystem.actions.FindAction("Player/Jump");
-            
-            m_MoveAction.Enable();
-            m_JumpAction.Enable();
+            playerInput = GetComponent<PlayerInput>();
+
+            // Bind actions from THIS player's input
+            m_MoveAction = playerInput.actions["Move"];
+            m_JumpAction = playerInput.actions["Jump"];
         }
+
 
         protected override void Update()
         {

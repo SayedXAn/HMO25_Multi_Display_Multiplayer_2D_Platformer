@@ -8,22 +8,22 @@ namespace Platformer.View
     /// </summary>
     public class ParallaxLayer : MonoBehaviour
     {
-        /// <summary>
-        /// Movement of the layer is scaled by this value.
-        /// </summary>
-        public Vector3 movementScale = Vector3.one;
+        ///// <summary>
+        ///// Movement of the layer is scaled by this value.
+        ///// </summary>
+        //public Vector3 movementScale = Vector3.one;
 
-        Transform _camera;
+        //Transform _camera;
 
-        void Awake()
-        {
-            _camera = Camera.main.transform;
-        }
+        ////void Awake()
+        ////{
+        ////    _camera = Camera.main.transform;
+        ////}
 
-        void LateUpdate()
-        {
-            transform.position = Vector3.Scale(_camera.position, movementScale);
-        }
+        //void LateUpdate()
+        //{
+        //    transform.position = Vector3.Scale(_camera.position, movementScale);
+        //}
 
     }
 }
