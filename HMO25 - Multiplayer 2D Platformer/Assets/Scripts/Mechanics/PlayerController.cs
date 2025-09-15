@@ -147,5 +147,12 @@ namespace Platformer.Mechanics
             InFlight,
             Landed
         }
+
+        public void SwitchOnCamera()
+        {
+            // ?
+        }
+
+
     }
 }
