@@ -18,6 +18,8 @@ namespace Platformer.Mechanics
         public AudioClip jumpAudio;
         public AudioClip respawnAudio;
         public AudioClip ouchAudio;
+        public uint id;
+        public GameObject myCam;
 
         /// <summary>
         /// Max horizontal speed of the player.
@@ -48,6 +50,7 @@ namespace Platformer.Mechanics
 
         void Awake()
         {
+            id = gameObject.GetComponent<PlayerInput>().user.id;
             health = GetComponent<Health>();
             audioSource = GetComponent<AudioSource>();
             collider2d = GetComponent<Collider2D>();
