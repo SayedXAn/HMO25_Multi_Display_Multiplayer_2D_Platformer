@@ -3,14 +3,12 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public GameObject playerToFollow;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public float leftThreshold = 1.5f;
     void Update()
     {
-        transform.position = new Vector3(playerToFollow.transform.position.x, transform.position.y, transform.position.z);
+        if(playerToFollow != null)
+        {
+            transform.position = new Vector3(playerToFollow.transform.position.x + leftThreshold, transform.position.y, transform.position.z);
+        }
     }
 }
