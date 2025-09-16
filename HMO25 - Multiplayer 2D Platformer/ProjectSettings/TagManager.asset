@@ -10,6 +10,7 @@ TagManager:
   - cam3
   - cam4
   - cam5
+  - movingplatform
   layers:
   - Default
   - TransparentFX

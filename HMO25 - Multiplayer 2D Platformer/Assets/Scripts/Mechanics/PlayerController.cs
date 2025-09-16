@@ -49,6 +49,10 @@ namespace Platformer.Mechanics
         public Bounds Bounds => collider2d.bounds;
 
         private PlayerInput playerInput;
+        public bool onMovingPlatform = false;
+        public GameObject movingPlatformRef;
+        public float gap = 0f;
+        public GameObject parent;
 
         void Awake()
         {
@@ -79,15 +83,57 @@ namespace Platformer.Mechanics
                     stopJump = true;
                     Schedule<PlayerStopJump>().player = this;
                 }
+
+                //if (onMovingPlatform && m_MoveAction.ReadValue<Vector2>().x != 0f)
+                //{
+                //    //Debug.Log("Gap is  " + gap);
+                //    //float temp = transform.position.x + gap + m_MoveAction.ReadValue<Vector2>().x;
+
+                //    //if (gap > 5)
+                //    //{
+                //    //    onMovingPlatform = false;
+                //    //    temp = movingPlatformRef.transform.position.x + 1.5f;
+                //    //}
+                //    //if (gap < -5)
+                //    //{
+                //    //    onMovingPlatform = false;
+                //    //    temp = movingPlatformRef.transform.position.x - 1.5f;
+                //    //}
+                //    //0.366932
+                //    //float temp = transform.position.x + move.x;
+                //    //transform.position = new Vector3(temp, transform.position.y, 0);
+                //    move.x = m_MoveAction.ReadValue<Vector2>().x * 20;
+
+                //    //Debug.Log("player pos: " + transform.position.x + " Temp is  " + temp + " movingPlatformRef.transform.position.x " + movingPlatformRef.transform.position.x + " m_MoveAction.ReadValue<Vector2>().x " + m_MoveAction.ReadValue<Vector2>().x);
+                //}
             }
             else
             {
-                move.x = 0;
+                move.x = 0;                
             }
             UpdateJumpState();
             base.Update();
         }
 
+        //private void OnCollisionEnter2D(Collision2D collision)
+        //{
+        //    if(collision.gameObject.tag == "movingplatform" )
+        //    {
+        //       onMovingPlatform = true;
+        //       //movingPlatformRef = collision.gameObject;
+        //       //gap = collision.gameObject.transform.position.x - transform.position.x;
+        //       transform.parent = collision.transform;
+        //    }
+        //}
+        //private void OnCollisionExit2D(Collision2D collision)
+        //{
+        //    if (collision.gameObject.tag == "movingplatform")
+        //    {
+        //        onMovingPlatform = false;
+        //        movingPlatformRef = null;
+        //        transform.parent = parent.transform;
+        //    }
+        //}
         void UpdateJumpState()
         {
             jump = false;
