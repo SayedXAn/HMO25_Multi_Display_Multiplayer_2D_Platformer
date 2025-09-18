@@ -11,6 +11,7 @@ TagManager:
   - cam4
   - cam5
   - movingplatform
+  - deathzone
   layers:
   - Default
   - TransparentFX

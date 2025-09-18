@@ -23,7 +23,6 @@ namespace Platformer.Mechanics
         private bool stopJump;
         public Collider2D collider2d;
         public AudioSource audioSource;
-        public Health health;
         public bool controlEnabled = true;
 
         bool jump;
@@ -38,15 +37,15 @@ namespace Platformer.Mechanics
 
         public Bounds Bounds => collider2d.bounds;
 
-        // --- Moving Platform support ---
         private Transform currentPlatform;
         private Vector3 lastPlatformPos;
         private Vector3 platformDelta;
 
+        public GameObject spawnPoint;
+
         void Awake()
         {
             id = gameObject.GetComponent<PlayerInput>().user.id;
-            health = GetComponent<Health>();
             audioSource = GetComponent<AudioSource>();
             collider2d = GetComponent<Collider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
@@ -151,6 +150,7 @@ namespace Platformer.Mechanics
                 currentPlatform = collision.transform;
                 lastPlatformPos = currentPlatform.position;
             }
+            
         }
 
         void OnCollisionExit2D(Collision2D collision)
@@ -160,7 +160,20 @@ namespace Platformer.Mechanics
                 currentPlatform = null;
             }
         }
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("deathzone"))
+            {
+                //Debug.Log("Deaddddddddddddddddddddddd");
+                StartCoroutine(AfterLife());
+            }
+        }
 
+        IEnumerator AfterLife()
+        {
+            yield return new WaitForSeconds(1f);
+            transform.position = spawnPoint.transform.position;
+        }    
         void LateUpdate()
         {
             if (currentPlatform != null)
