@@ -12,6 +12,7 @@ TagManager:
   - cam5
   - movingplatform
   - deathzone
+  - winbox
   layers:
   - Default
   - TransparentFX

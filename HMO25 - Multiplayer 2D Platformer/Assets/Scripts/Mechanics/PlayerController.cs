@@ -42,6 +42,7 @@ namespace Platformer.Mechanics
         private Vector3 platformDelta;
 
         public GameObject spawnPoint;
+        public GameManager mngr;
 
         void Awake()
         {
@@ -60,6 +61,10 @@ namespace Platformer.Mechanics
 
         protected override void Update()
         {
+            if(!mngr.gameOn)
+            {
+                return;
+            }
             if (controlEnabled)
             {
                 move.x = m_MoveAction.ReadValue<Vector2>().x;
@@ -167,6 +172,12 @@ namespace Platformer.Mechanics
                 //Debug.Log("Deaddddddddddddddddddddddd");
                 StartCoroutine(AfterLife());
             }
+
+            if (collision.gameObject.CompareTag("winbox"))
+            {
+                //Debug.Log("Deaddddddddddddddddddddddd");
+                ReachedGameWin();
+            }
         }
 
         IEnumerator AfterLife()
@@ -185,6 +196,11 @@ namespace Platformer.Mechanics
             {
                 platformDelta = Vector3.zero;
             }
+        }
+
+        public void ReachedGameWin()
+        {
+            mngr.GameWin(id);
         }
 
 
