@@ -9,31 +9,20 @@ using UnityEngine.InputSystem;
 
 namespace Platformer.Mechanics
 {
-    /// <summary>
-    /// This is the main class used to implement control of the player.
-    /// It is a superset of the AnimationController class, but is inlined to allow for any kind of customisation.
-    /// </summary>
     public class PlayerController : KinematicObject
     {
         public AudioClip jumpAudio;
         public AudioClip respawnAudio;
         public AudioClip ouchAudio;
         public uint id;
-        //public GameObject myCam;
 
-        /// <summary>
-        /// Max horizontal speed of the player.
-        /// </summary>
         public float maxSpeed = 7;
-        /// <summary>
-        /// Initial jump velocity at the start of a jump.
-        /// </summary>
         public float jumpTakeOffSpeed = 7;
 
         public JumpState jumpState = JumpState.Grounded;
         private bool stopJump;
-        /*internal new*/ public Collider2D collider2d;
-        /*internal new*/ public AudioSource audioSource;
+        public Collider2D collider2d;
+        public AudioSource audioSource;
         public Health health;
         public bool controlEnabled = true;
 
@@ -45,14 +34,13 @@ namespace Platformer.Mechanics
 
         private InputAction m_MoveAction;
         private InputAction m_JumpAction;
+        private PlayerInput playerInput;
 
         public Bounds Bounds => collider2d.bounds;
 
-        private PlayerInput playerInput;
-        public bool onMovingPlatform = false;
-        public GameObject movingPlatformRef;
-        public float gap = 0f;
-        public GameObject parent;
+        // --- Moving Platform support ---
+        private Transform currentPlatform;
+        private Vector3 lastPlatformPos;
 
         void Awake()
         {
@@ -70,7 +58,6 @@ namespace Platformer.Mechanics
             m_JumpAction = playerInput.actions["Jump"];
         }
 
-
         protected override void Update()
         {
             if (controlEnabled)
@@ -83,57 +70,16 @@ namespace Platformer.Mechanics
                     stopJump = true;
                     Schedule<PlayerStopJump>().player = this;
                 }
-
-                //if (onMovingPlatform && m_MoveAction.ReadValue<Vector2>().x != 0f)
-                //{
-                //    //Debug.Log("Gap is  " + gap);
-                //    //float temp = transform.position.x + gap + m_MoveAction.ReadValue<Vector2>().x;
-
-                //    //if (gap > 5)
-                //    //{
-                //    //    onMovingPlatform = false;
-                //    //    temp = movingPlatformRef.transform.position.x + 1.5f;
-                //    //}
-                //    //if (gap < -5)
-                //    //{
-                //    //    onMovingPlatform = false;
-                //    //    temp = movingPlatformRef.transform.position.x - 1.5f;
-                //    //}
-                //    //0.366932
-                //    //float temp = transform.position.x + move.x;
-                //    //transform.position = new Vector3(temp, transform.position.y, 0);
-                //    move.x = m_MoveAction.ReadValue<Vector2>().x * 20;
-
-                //    //Debug.Log("player pos: " + transform.position.x + " Temp is  " + temp + " movingPlatformRef.transform.position.x " + movingPlatformRef.transform.position.x + " m_MoveAction.ReadValue<Vector2>().x " + m_MoveAction.ReadValue<Vector2>().x);
-                //}
             }
             else
             {
-                move.x = 0;                
+                move.x = 0;
             }
+
             UpdateJumpState();
             base.Update();
         }
 
-        //private void OnCollisionEnter2D(Collision2D collision)
-        //{
-        //    if(collision.gameObject.tag == "movingplatform" )
-        //    {
-        //       onMovingPlatform = true;
-        //       //movingPlatformRef = collision.gameObject;
-        //       //gap = collision.gameObject.transform.position.x - transform.position.x;
-        //       transform.parent = collision.transform;
-        //    }
-        //}
-        //private void OnCollisionExit2D(Collision2D collision)
-        //{
-        //    if (collision.gameObject.tag == "movingplatform")
-        //    {
-        //        onMovingPlatform = false;
-        //        movingPlatformRef = null;
-        //        transform.parent = parent.transform;
-        //    }
-        //}
         void UpdateJumpState()
         {
             jump = false;
@@ -191,6 +137,34 @@ namespace Platformer.Mechanics
             targetVelocity = move * maxSpeed;
         }
 
+        // --- Moving Platform Handling ---
+        void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("movingplatform"))
+            {
+                currentPlatform = collision.transform;
+                lastPlatformPos = currentPlatform.position;
+            }
+        }
+
+        void OnCollisionExit2D(Collision2D collision)
+        {
+            if (collision.transform == currentPlatform)
+            {
+                currentPlatform = null;
+            }
+        }
+
+        void LateUpdate()
+        {
+            if (currentPlatform != null)
+            {
+                Vector3 delta = currentPlatform.position - lastPlatformPos;
+                transform.position += delta; // apply platform movement
+                lastPlatformPos = currentPlatform.position;
+            }
+        }
+
         public enum JumpState
         {
             Grounded,
@@ -204,7 +178,5 @@ namespace Platformer.Mechanics
         {
             // ?
         }
-
-
     }
 }
