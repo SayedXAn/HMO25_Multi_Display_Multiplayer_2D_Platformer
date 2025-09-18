@@ -41,6 +41,7 @@ namespace Platformer.Mechanics
         // --- Moving Platform support ---
         private Transform currentPlatform;
         private Vector3 lastPlatformPos;
+        private Vector3 platformDelta;
 
         void Awake()
         {
@@ -131,13 +132,18 @@ namespace Platformer.Mechanics
             else if (move.x < -0.01f)
                 spriteRenderer.flipX = true;
 
+            // animation should only care about the input movement
             animator.SetBool("grounded", IsGrounded);
-            animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
+            animator.SetFloat("velocityX", Mathf.Abs(move.x));
 
-            targetVelocity = move * maxSpeed;
+            // Add platform motion to actual velocity
+            Vector2 platformVelocity = platformDelta / Time.deltaTime;
+            targetVelocity = move * maxSpeed + platformVelocity;
         }
 
-        // --- Moving Platform Handling ---
+
+
+
         void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.CompareTag("movingplatform"))
@@ -159,11 +165,16 @@ namespace Platformer.Mechanics
         {
             if (currentPlatform != null)
             {
-                Vector3 delta = currentPlatform.position - lastPlatformPos;
-                transform.position += delta; // apply platform movement
+                platformDelta = currentPlatform.position - lastPlatformPos;
                 lastPlatformPos = currentPlatform.position;
             }
+            else
+            {
+                platformDelta = Vector3.zero;
+            }
         }
+
+
 
         public enum JumpState
         {
