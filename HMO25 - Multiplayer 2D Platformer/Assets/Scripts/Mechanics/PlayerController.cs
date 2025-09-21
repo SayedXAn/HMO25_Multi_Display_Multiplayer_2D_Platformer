@@ -6,6 +6,7 @@ using static Platformer.Core.Simulation;
 using Platformer.Model;
 using Platformer.Core;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 namespace Platformer.Mechanics
 {
@@ -16,8 +17,8 @@ namespace Platformer.Mechanics
         public AudioClip ouchAudio;
         public uint id;
 
-        public float maxSpeed = 7;
-        public float jumpTakeOffSpeed = 7;
+        private float maxSpeed = 6;
+        private float jumpTakeOffSpeed = 9;
 
         public JumpState jumpState = JumpState.Grounded;
         private bool stopJump;
@@ -178,6 +179,22 @@ namespace Platformer.Mechanics
                 //Debug.Log("Deaddddddddddddddddddddddd");
                 ReachedGameWin();
             }
+            if(collision.gameObject.CompareTag("orb"))
+            {
+                Destroy(collision.gameObject);
+                StartCoroutine(OrbHit());
+            }
+        }
+
+        IEnumerator OrbHit()
+        {
+            maxSpeed = 9f;
+            jumpTakeOffSpeed = 11f;
+            transform.DOScale(2.75f, 0.5f);
+            yield return new WaitForSeconds(5f);
+            maxSpeed = 6f;
+            jumpTakeOffSpeed = 9f;
+            transform.DOScale(2.5f, 0.5f);
         }
 
         IEnumerator AfterLife()

@@ -13,6 +13,7 @@ TagManager:
   - movingplatform
   - deathzone
   - winbox
+  - orb
   layers:
   - Default
   - TransparentFX
