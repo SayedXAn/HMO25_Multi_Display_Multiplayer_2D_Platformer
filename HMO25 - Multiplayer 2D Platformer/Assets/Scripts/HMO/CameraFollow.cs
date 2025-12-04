@@ -6,9 +6,9 @@ public class CameraFollow : MonoBehaviour
     public float leftThreshold = 1.5f;
     void Update()
     {
-        if(playerToFollow != null)
+        if(playerToFollow != null )
         {
-            transform.position = new Vector3(playerToFollow.transform.position.x + leftThreshold, transform.position.y, transform.position.z);
+            transform.position = new Vector3(Mathf.Clamp(playerToFollow.transform.position.x + leftThreshold, -8.98f, 46.37f), transform.position.y, transform.position.z);
         }
     }
 }

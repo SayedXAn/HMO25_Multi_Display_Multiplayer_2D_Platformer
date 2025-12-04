@@ -183,20 +183,21 @@ namespace Platformer.Mechanics
             if(collision.gameObject.CompareTag("orb"))
             {
                 Destroy(collision.gameObject);
-                StartCoroutine(OrbHit());
+                mngr.OrbHitScoreCount(id);
+                //StartCoroutine(OrbHit());
             }
         }
 
-        IEnumerator OrbHit()
-        {
-            maxSpeed = 9f;
-            jumpTakeOffSpeed = 11f;
-            transform.DOScale(2.75f, 0.5f);
-            yield return new WaitForSeconds(5f);
-            maxSpeed = 6f;
-            jumpTakeOffSpeed = 9f;
-            transform.DOScale(2.5f, 0.5f);
-        }
+        //IEnumerator OrbHit()
+        //{            
+        //    maxSpeed = 9f;
+        //    jumpTakeOffSpeed = 11f;
+        //    transform.DOScale(2.75f, 0.5f);
+        //    yield return new WaitForSeconds(3f);
+        //    maxSpeed = 6f;
+        //    jumpTakeOffSpeed = 9f;
+        //    transform.DOScale(2.5f, 0.5f);
+        //}
 
         IEnumerator AfterLife()
         {
