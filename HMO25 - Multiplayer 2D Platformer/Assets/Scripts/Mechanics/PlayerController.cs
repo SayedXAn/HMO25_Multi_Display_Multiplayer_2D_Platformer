@@ -168,6 +168,7 @@ namespace Platformer.Mechanics
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
+           
             if (collision.gameObject.CompareTag("deathzone"))
             {
                 //Debug.Log("Deaddddddddddddddddddddddd");
