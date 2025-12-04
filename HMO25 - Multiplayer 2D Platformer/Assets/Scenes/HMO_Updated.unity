@@ -1057,9 +1057,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.75
     y: 0
-    width: 1
+    width: 1.5
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -1072,7 +1072,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 3
+  m_TargetDisplay: 4
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -2182,7 +2182,7 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: -0.75
     y: 0
     width: 1
     height: 1
@@ -2197,7 +2197,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
+  m_TargetDisplay: 4
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -3895,9 +3895,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.5
     y: 0
-    width: 1
+    width: 0.25
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -3910,7 +3910,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 2
+  m_TargetDisplay: 4
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -4829,9 +4829,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.25
     y: 0
-    width: 1
+    width: 0.25
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -4844,7 +4844,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 1
+  m_TargetDisplay: 4
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -7849,6 +7849,8 @@ MonoBehaviour:
   - {fileID: 1903099748}
   - {fileID: 601005591}
   gameOn: 1
+  AS: {fileID: 0}
+  sfx: []
 --- !u!1001 &1788227876
 PrefabInstance:
   m_ObjectHideFlags: 0
