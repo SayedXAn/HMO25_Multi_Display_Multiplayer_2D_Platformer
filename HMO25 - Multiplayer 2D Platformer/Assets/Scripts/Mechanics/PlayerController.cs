@@ -62,7 +62,7 @@ namespace Platformer.Mechanics
 
         protected override void Update()
         {
-            if(!mngr.gameOn)
+            if(!mngr.IsGameOn())
             {
                 return;
             }
