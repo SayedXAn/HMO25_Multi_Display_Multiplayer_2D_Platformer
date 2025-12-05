@@ -171,4 +171,8 @@ public class GameManager : MonoBehaviour
     {
         return gameOn;
     }
+    public void RestartScene()
+    {
+        SceneManager.LoadScene("HMO_Updated");
+    }
 }

@@ -172,6 +172,8 @@ namespace Platformer.Mechanics
             if (collision.gameObject.CompareTag("deathzone"))
             {
                 //Debug.Log("Deaddddddddddddddddddddddd");
+                mngr.AS.clip = mngr.sfx[1];
+                mngr.AS.Play();
                 StartCoroutine(AfterLife());
             }
 
