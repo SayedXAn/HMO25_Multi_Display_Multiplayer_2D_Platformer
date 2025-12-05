@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     public TMP_InputField[] rfid_inputFields;
     private string[] rfids = { "", "", "", ""};
     public GameObject rfidPanel;
+    public int timerCount = 120;
+    public TMP_Text[] timerTexts;
     void Start()
     {
         if (Display.displays.Length > 1)
@@ -147,6 +149,7 @@ public class GameManager : MonoBehaviour
         {
             gameOn = true;
             rfidPanel.SetActive(false);
+            StartCountDown();
         }
         else
         {
@@ -174,5 +177,22 @@ public class GameManager : MonoBehaviour
     public void RestartScene()
     {
         SceneManager.LoadScene("HMO_Updated");
+    }
+    public void StartCountDown()
+    {
+        StartCoroutine(CountDownTimer());
+    }
+    IEnumerator CountDownTimer()
+    {
+        yield return new WaitForSeconds(1f);
+        timerCount--;
+        foreach(TMP_Text text in timerTexts)
+        {
+            text.text = timerCount.ToString() + "s";
+        }
+        if(timerCount > 0)
+        {
+            StartCoroutine(CountDownTimer());
+        }
     }
 }
