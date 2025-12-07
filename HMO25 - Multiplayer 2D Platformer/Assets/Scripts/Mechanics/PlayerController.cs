@@ -221,7 +221,7 @@ namespace Platformer.Mechanics
 
         public void ReachedGameWin()
         {
-            mngr.GameWin(id);
+            mngr.GameWin(id - 1);
         }
 
 

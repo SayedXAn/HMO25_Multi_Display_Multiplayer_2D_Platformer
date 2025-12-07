@@ -59,11 +59,47 @@ public class GameManager : MonoBehaviour
         AS.clip = sfx[2];
         AS.Play();
         gameOn = false;
-        scores[id - 1] = scores[id - 1] + 100;
-        for(int i = 0; i < gameWinPanel.Length; i++)
+        int w = int.Parse(id.ToString());
+        Debug.Log("wwww: " + w);
+        for(int i = 0; i < scores.Length; i++)
+        {
+            if(i == w)
+            {
+                scores[i] = 15;
+                scoreTexts[i].text = "Score: 150";
+            }
+            else
+            {
+                scores[i] = scores[i]/10;
+                if(scores[i] < 2)
+                {
+                    scores[i] = 2;
+                }
+            }
+            gameWinPanel[i].gameObject.SetActive(true);
+            
+            gameWinText[i].text = "Player " + (w+1) + " wins";
+        }
+
+        //for(int i = 0; i < gameWinPanel.Length; i++)
+        //{
+        //    gameWinPanel[i].gameObject.SetActive(true);
+        //    gameWinText[i].text = "Player " + id + " wins";
+        //}
+
+        SendScore();
+    }
+
+    public void CheckWhoIsWinnerWhenTimeOver()
+    {
+        gameOn = false;
+        //Debug.Log("Time Seshhhhhhhhhhhhhhhhhhhhhhhh");
+
+        for (int i = 0; i < scores.Length; i++)
         {
             gameWinPanel[i].gameObject.SetActive(true);
-            gameWinText[i].text = "Player " + id + " wins";
+            gameWinText[i].text = "Time's up!\nYour score: " + scores[i];
+            scores[i] = scores[i]/10;
         }
         SendScore();
     }
@@ -122,7 +158,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Optional: fade out after 3 seconds
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         statusText.text = "";
     }
 
@@ -193,6 +229,10 @@ public class GameManager : MonoBehaviour
         if(timerCount > 0)
         {
             StartCoroutine(CountDownTimer());
+        }
+        else
+        {
+            CheckWhoIsWinnerWhenTimeOver();
         }
     }
 }
