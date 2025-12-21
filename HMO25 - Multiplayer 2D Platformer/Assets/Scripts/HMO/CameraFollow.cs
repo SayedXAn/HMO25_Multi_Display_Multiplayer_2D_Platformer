@@ -1,9 +1,15 @@
+using Platformer.Mechanics;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
     public GameObject playerToFollow;
     public float leftThreshold = 1.5f;
+    private void Start()
+    {
+        //gameObject.GetComponent<Camera>().targetDisplay = (int)playerToFollow.GetComponent<PlayerController>().id - 1;
+        
+    }
     void Update()
     {
         if(playerToFollow != null )

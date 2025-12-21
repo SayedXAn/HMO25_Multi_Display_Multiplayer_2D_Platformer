@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Linq;
 using System.Text;
 using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Networking;
@@ -27,16 +25,17 @@ public class GameManager : MonoBehaviour
     public GameObject rfidPanel;
     public int timerCount = 120;
     public TMP_Text[] timerTexts;
+    //public TMP_Text amiDebugText;
     void Start()
     {
-        if (Display.displays.Length > 1)
-        {
-            // Activate all secondary displays
-            for (int i = 1; i < Display.displays.Length; i++)
-            {
-                Display.displays[i].Activate();
-            }
-        }
+        //if (Display.displays.Length > 1)
+        //{
+        //    // Activate all secondary displays
+        //    for (int i = 1; i < Display.displays.Length; i++)
+        //    {
+        //        Display.displays[i].Activate();
+        //    }
+        //}
         rfidPanel.SetActive(true);
         rfid_inputFields[0].ActivateInputField();
     }
@@ -164,6 +163,8 @@ public class GameManager : MonoBehaviour
 
     public void OrbHitScoreCount(uint id)
     {
+        //Debug.Log("Ami player "+ id + " ami paisi 10");
+        //amiDebugText.text = "Ami player " + id + " ami paisi 10";
         scores[id - 1] += 10;
         scoreTexts[id - 1].text = "Score: " + scores[id-1].ToString();
         AS.clip = sfx[0];
@@ -226,11 +227,19 @@ public class GameManager : MonoBehaviour
         {
             text.text = timerCount.ToString() + "s";
         }
-        if(timerCount > 0)
+        if(!gameOn)
+        {
+            StopCoroutine(CountDownTimer());
+            foreach (TMP_Text text in timerTexts)
+            {
+                text.text = "00s";
+            }
+        }
+        else if(timerCount > 0)
         {
             StartCoroutine(CountDownTimer());
         }
-        else
+        else if(timerCount == 0)
         {
             CheckWhoIsWinnerWhenTimeOver();
         }
