@@ -1,4 +1,3 @@
-using Platformer.Mechanics;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
