@@ -12407,7 +12407,7 @@ MonoBehaviour:
   - {fileID: 1659647375}
   - {fileID: 871227498}
   rfidPanel: {fileID: 313283776}
-  timerCount: 60
+  timerCount: 120
   timerTexts:
   - {fileID: 1886217504}
   - {fileID: 919254844}
