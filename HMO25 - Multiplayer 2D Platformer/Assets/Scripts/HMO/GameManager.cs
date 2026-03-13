@@ -171,16 +171,16 @@ public class GameManager : MonoBehaviour
 
     public void StartGameButton()
     {
-        int playerCount = 0;
-        for(int i = 0; i < rfid_inputFields.Length; i++)
-        {
-            if (rfid_inputFields[i].text.Length == 10)
-            {
-                rfids[i] = rfid_inputFields[i].text;
-                playerCount++;
-            }
-        }
-        if(playerCount > 0)
+        //int playerCount = 0;
+        //for(int i = 0; i < rfid_inputFields.Length; i++)
+        //{
+        //    if (rfid_inputFields[i].text.Length == 10)
+        //    {
+        //        rfids[i] = rfid_inputFields[i].text;
+        //        playerCount++;
+        //    }
+        //}
+        if(/*playerCount > 0*/ true)
         {
             gameOn = true;
             rfidPanel.SetActive(false);
