@@ -211,7 +211,7 @@ public class GameManager : MonoBehaviour
     }
     public void RestartScene()
     {
-        SceneManager.LoadScene("HMO_Updated");
+        SceneManager.LoadScene("JCI");
     }
     public void StartCountDown()
     {
