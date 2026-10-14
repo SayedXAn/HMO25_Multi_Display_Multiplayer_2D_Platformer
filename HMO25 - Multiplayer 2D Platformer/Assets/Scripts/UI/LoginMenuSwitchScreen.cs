@@ -5,6 +5,7 @@ public class LoginMenuSwitchScreen : MonoBehaviour
 {
     public GameObject[] screens;
     public TMP_Dropdown screenDropdown;
+    public GameObject restartSceneButton;
     void Start()
     {
         if(PlayerPrefs.HasKey("LastScreenIndex"))
@@ -22,6 +23,7 @@ public class LoginMenuSwitchScreen : MonoBehaviour
     {
         Debug.Log("Switching to screen: " + index);
         transform.SetParent(screens[index].transform, false);
+        restartSceneButton.transform.SetParent(screens[index].transform.GetChild(0).transform, false);
         PlayerPrefs.SetInt("LastScreenIndex", index);
     }
 

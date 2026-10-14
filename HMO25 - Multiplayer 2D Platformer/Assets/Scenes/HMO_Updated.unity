@@ -2181,6 +2181,7 @@ MonoBehaviour:
   - {fileID: 1586291612}
   - {fileID: 1659850336}
   screenDropdown: {fileID: 818639309}
+  restartSceneButton: {fileID: 1924989742}
 --- !u!1001 &321086441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7568,7 +7569,7 @@ SpriteRenderer:
   m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: e4322e0339d8a644999d88e62cbddb0b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -10348,17 +10349,17 @@ PrefabInstance:
     - target: {fileID: 212064061491315838, guid: 7d60c822c3f1b408ea7a00ecdb5e047a,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.9490197
+      value: 0.8499565
       objectReference: {fileID: 0}
     - target: {fileID: 212064061491315838, guid: 7d60c822c3f1b408ea7a00ecdb5e047a,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.73333335
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 212064061491315838, guid: 7d60c822c3f1b408ea7a00ecdb5e047a,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.10588236
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 473687275174411655, guid: 7d60c822c3f1b408ea7a00ecdb5e047a,
         type: 3}
@@ -13685,7 +13686,7 @@ MonoBehaviour:
   - {fileID: 1627003550}
   - {fileID: 957745555}
   playerColors:
-  - {r: 0.10980393, g: 0.73333335, b: 0.9490197, a: 1}
+  - {r: 1, g: 0, b: 0.85098046, a: 1}
   - {r: 0.95294124, g: 0.36862746, b: 0.3921569, a: 1}
   - {r: 0, g: 0.36078432, b: 0.8705883, a: 1}
   - {r: 0.654902, g: 0.48235297, b: 0.8352942, a: 1}
@@ -14680,11 +14681,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1472686806}
   - {fileID: 2092996568}
   - {fileID: 524071008}
   - {fileID: 1678746317}
   - {fileID: 1886217503}
-  - {fileID: 1472686806}
   - {fileID: 313283777}
   - {fileID: 1269214628}
   - {fileID: 1228598135}
@@ -16141,7 +16142,7 @@ PrefabInstance:
     - target: {fileID: 1869310224376796938, guid: 5b579164b4e14524ba9bad5ef11ce8ac,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.34
+      value: 1.67
       objectReference: {fileID: 0}
     - target: {fileID: 1869310224376796938, guid: 5b579164b4e14524ba9bad5ef11ce8ac,
         type: 3}
