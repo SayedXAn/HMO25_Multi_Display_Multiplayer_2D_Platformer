@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LoginMenuSwitchScreen : MonoBehaviour
 {
@@ -16,6 +17,25 @@ public class LoginMenuSwitchScreen : MonoBehaviour
         else
         {
             SwitchScreen(0);
+        }
+    }
+
+    private void Update()
+    {
+        if (Keyboard.current.qKey.wasPressedThisFrame)
+        {
+            int currentIndex = screenDropdown.value;
+            int nextIndex = (currentIndex + 1) % screens.Length;
+            screenDropdown.value = nextIndex;
+            SwitchScreen(nextIndex);
+
+        }
+        else if (Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            int currentIndex = screenDropdown.value;
+            int previousIndex = (currentIndex - 1 + screens.Length) % screens.Length;
+            screenDropdown.value = previousIndex;
+            SwitchScreen(previousIndex);
         }
     }
 
